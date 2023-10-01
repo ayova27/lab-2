@@ -12,6 +12,7 @@ def ratio():
         else:
             print("No!")
 
+
 # ratio()
 
 def roskomnadzor():
@@ -42,16 +43,82 @@ def arithmetic_progression():
 
 
 def rook_move():
-    chess_board = 8
+    chess_board = 9
+    numbering = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    letter = ["   a", "b", "c", 'd', "e", "f", "g", "h"]
 
-    for i in range(chess_board):
-        for j in range(chess_board):
-            if i == 5 and j == 4:
-                continue
-            if (i + j) % 2 == 0:
-                print("■", end=" ")
-            else:
-                print("□", end=" ")
-        print()
+    def first_move():
+        for i in range(chess_board):
+            numbers = numbering[i]
+            if i == 8:
+                for a in letter:
+                    print(a, end=" ")
+                break
+            for j in range(chess_board):
+                if numbers == numbering[i]:
+                    print(numbers, end=". ")
+                    numbers += 1
+                elif i == 4 and j == 4:
+                    print(end="  ")
+                    continue
+                elif (i + j) % 2 != 0:
+                    print("■", end=" ")
+                elif (i + j) % 2 == 0:
+                    print("□", end=" ")
+            print()
+
+    first_move()
+
+    letters_and_numbers = {
+        'a': 1,
+        'b': 2,
+        'c': 3,
+        'd': 4,
+        'e': 5,
+        'f': 6,
+        'g': 7,
+        'h': 8
+    }
+
+    def second_and_other_move(user_move_number, user_move_letter):
+
+        try:
+            user_move_number = int(input("\nYour move by number: "))
+            user_move_letter = str(input("Your mover by letter: ")).lower()
+            user_move_number = user_move_number - 1
+        except ValueError:
+            print("Please do what is written in input")
+
+        if user_move_number <= 8 and user_move_letter is not letters_and_numbers.keys():
+            print("You can't move")
+            dauletsuper = False
+            return
+
+        for i in range(0, chess_board):
+            numbers = numbering[i]
+
+            if i == 8:
+
+                for a in letter:
+                    print(a, end=" ")
+                break
+
+            for j in range(chess_board):
+
+                if numbers == numbering[i]:
+                    print(numbers, end=". ")
+                    numbers += 1
+
+                elif i == user_move_number and j == letters_and_numbers[f'{user_move_letter}']:
+                    print(end="  ")
+                    continue
+
+                elif (i + j) % 2 != 0:
+                    print("■", end=" ")
+
+                elif (i + j) % 2 == 0:
+                    print("□", end=" ")
+            print()
+
 
 rook_move()
