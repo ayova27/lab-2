@@ -50,19 +50,24 @@ def rook_move():
     def first_move():
         for i in range(chess_board):
             numbers = numbering[i]
+
             if i == 8:
                 for a in letter:
                     print(a, end=" ")
                 break
+
             for j in range(chess_board):
                 if numbers == numbering[i]:
                     print(numbers, end=". ")
                     numbers += 1
+
                 elif i == 4 and j == 4:
                     print(end="  ")
                     continue
+
                 elif (i + j) % 2 != 0:
                     print("■", end=" ")
+
                 elif (i + j) % 2 == 0:
                     print("□", end=" ")
             print()
