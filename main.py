@@ -42,37 +42,40 @@ def arithmetic_progression():
         print("Please, enter number!")
 
 
-def rook_move():
+def print_board():
     chess_board = 9
     numbering = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     letter = ["   a", "b", "c", 'd', "e", "f", "g", "h"]
 
-    def first_move():
-        for i in range(chess_board):
-            numbers = numbering[i]
+    for i in range(chess_board):
+        numbers = numbering[i]
 
-            if i == 8:
-                for a in letter:
-                    print(a, end=" ")
-                break
+        if i == 8:
+            for a in letter:
+                print(a, end=" ")
+            break
 
-            for j in range(chess_board):
-                if numbers == numbering[i]:
-                    print(numbers, end=". ")
-                    numbers += 1
+        for j in range(chess_board):
+            if numbers == numbering[i]:
+                print(numbers, end=". ")
+                numbers += 1
 
-                elif i == 4 and j == 4:
-                    print(end="  ")
-                    continue
+            elif i == 4 and j == 4:
+                print(end="  ")
+                continue
 
-                elif (i + j) % 2 != 0:
-                    print("■", end=" ")
+            elif (i + j) % 2 != 0:
+                print("■", end=" ")
 
-                elif (i + j) % 2 == 0:
-                    print("□", end=" ")
-            print()
+            elif (i + j) % 2 == 0:
+                print("□", end=" ")
+        print()
 
-    first_move()
+
+def second_and_other_move():
+    chess_board = 9
+    numbering = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    letter = ["   a", "b", "c", 'd', "e", "f", "g", "h"]
 
     letters_and_numbers = {
         'a': 1,
@@ -85,45 +88,75 @@ def rook_move():
         'h': 8
     }
 
-    def second_and_other_move(user_move_number, user_move_letter):
+    default_position_number = 4
+    default_position_letter = 'd'
 
-        try:
+    user_move_number = 4
+    user_move_letter = "d"
+
+    try:
+        print("""\nIf you want a horizontal move, enter 1. If you want a vertical move, enter 2.
+What are you want (horizontal or vertical): 
+""")
+        user_move = int(input())
+
+        if user_move == 1:
             user_move_number = int(input("\nYour move by number: "))
-            user_move_letter = str(input("Your mover by letter: ")).lower()
             user_move_number = user_move_number - 1
-        except ValueError:
-            print("Please do what is written in input")
 
-        if user_move_number <= 8 and user_move_letter is not letters_and_numbers.keys():
-            print("You can't move")
-            dauletsuper = False
-            return
+            if user_move_number >= default_position_number:
+                print("You can't move that!")
+                return
 
-        for i in range(0, chess_board):
-            numbers = numbering[i]
+        elif user_move == 2:
+            user_move_letter = str(input("Your move by letter: ")).lower()
 
-            if i == 8:
+            if user_move_letter not in "abcdefgh":
+                print("You can't move that!")
+                return
 
-                for a in letter:
-                    print(a, end=" ")
-                break
+    except ValueError:
+        print("Please enter a valid input.")
 
-            for j in range(chess_board):
+    for i in range(0, chess_board):
+        numbers = numbering[i]
 
-                if numbers == numbering[i]:
-                    print(numbers, end=". ")
-                    numbers += 1
+        if i == 8:
+            for a in letter:
+                print(a, end=" ")
+            break
 
-                elif i == user_move_number and j == letters_and_numbers[f'{user_move_letter}']:
-                    print(end="  ")
-                    continue
+        for j in range(chess_board):
 
-                elif (i + j) % 2 != 0:
-                    print("■", end=" ")
+            if numbers == numbering[i]:
+                print(numbers, end=". ")
+                numbers += 1
 
-                elif (i + j) % 2 == 0:
-                    print("□", end=" ")
-            print()
+            elif i == user_move_number and j == letters_and_numbers[user_move_letter]:
+                print(end="  ")
+                continue
 
+            elif (i + j) % 2 != 0:
+                print("■", end=" ")
+
+            elif (i + j) % 2 == 0:
+                print("□", end=" ")
+        print()
+
+    again = str(input("Do you want another move? (y/n): "))
+    if again == "y":
+        default_position_number = user_move_number
+        default_position_letter = user_move_letter
+        second_and_other_move()
+
+    elif again == "n":
+        print("Bye!")
+
+def rook_move():
+    print_board()
+    second_and_other_move()
 
 rook_move()
+
+
+
