@@ -17,6 +17,7 @@ def ratio():
     except TypeError:
         print("Please, enter number!")
 
+
 # ratio()
 
 def roskomnadzor():
@@ -66,6 +67,7 @@ def average_number():
         print("Please, enter number!")
     except TypeError:
         print("Please, enter number!")
+
 
 # average_number()
 
@@ -182,6 +184,8 @@ def age_group():
     except TypeError:
         print("You're an idiot in square one.")
 
+
+# age_group()
 
 def triangle_view():
     try:
