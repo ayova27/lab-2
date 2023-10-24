@@ -203,9 +203,9 @@ def triangle_view():
             print("Versatile")
     except ValueError:
         print("'Call the nuthouse'"
-              "\n'Hello'."
+              "\n'Hello.'"
               "\n'Home for the mentally ill, what can I do for you?'"
               "\n'We have a patient for you.'")
 
 
-triangle_view()
+# triangle_view()
